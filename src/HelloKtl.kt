@@ -81,14 +81,30 @@ fun main() {
 //    val student = Student("zgq", 18, "男", "神技大学")
 //    println("student的属性：${student}")
 //    student.eat()
+//    printFoo(student)
+//    println(student.foo())
 
 //    val test3 = Test3(100)
 //    println(test3.a)
 //    test3.tif()
 //    test3.fit()
 //    test3.drink()
+//    test3.expand(100)
 
+    
 
+}
+
+fun Student.foo() = "Student的扩展函数"
+fun Person.foo() = "Person的扩展函数"
+
+fun printFoo(per: Person) {
+    println(per.foo())
+}
+
+// 扩展函数，指定某个类，为其添加函数, 若扩展函数与成员函数名称一致时，调用时，优先调用成员函数
+fun Test3.expand(a: Int) {
+    println("Test3的扩展函数，参数：$a")
 }
 
 class Test3(override var a: Int) : TestInterface2, TestInterface {
@@ -119,6 +135,8 @@ interface TestInterface2 {
 }
 
 class Student(name: String, age: Int, sex: String, var school: String) : Person(name, age, sex) {
+
+    fun foo() = "Student的成员函数"
 
     override fun toString(): String {
         return "$name, $age, $sex, $school"
